@@ -1,0 +1,17 @@
+{
+  "name": "JAYBUILDS.IN",
+  "short_name": "JAYBUILDS",
+  "description": "Vibrant website design and development",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4faff",
+  "theme_color": "#1268f5",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

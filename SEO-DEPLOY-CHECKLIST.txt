@@ -1,0 +1,28 @@
+JAYBUILDS.IN — SEO UPGRADE & VERCEL LAUNCH CHECKLIST
+====================================================
+
+Included in this upgrade
+- Page-specific titles and meta descriptions.
+- Canonical URLs set to https://jaybuilds.in/ and each page URL.
+- Open Graph and Twitter summary-large-image metadata.
+- Organization and WebSite JSON-LD on every page, plus breadcrumb data and relevant page schema.
+- Branded SVG favicon and web app manifest.
+- Updated sitemap.xml and robots.txt; the 404 page is marked noindex.
+- Lazy loading and async decoding for images, with high fetch priority for the homepage hero.
+
+Deploy
+1. Extract this ZIP and upload the contents of JAYBUILDS-IN to your GitHub repository.
+2. Import the repository in Vercel. For this plain HTML/CSS/JS site, use Framework Preset: Other; no build command is needed and output directory should be the project root (or the folder containing index.html if the repository has a wrapper folder).
+3. In Vercel Settings > Domains, add jaybuilds.in and www.jaybuilds.in, then apply the exact DNS records Vercel provides at your registrar.
+4. Confirm https://jaybuilds.in/ and https://jaybuilds.in/sitemap.xml load over HTTPS. Redirect the preferred www/non-www host to the other in Vercel. Canonicals currently prefer the non-www domain.
+5. Register https://jaybuilds.in/ in Google Search Console (Domain property recommended), verify ownership via DNS, and submit sitemap.xml.
+6. Test pages on mobile and run PageSpeed Insights; validate JSON-LD using Google's Rich Results Test or Schema Markup Validator.
+7. After any URL or content change, update the canonical and sitemap if needed. Do not create fake reviews, business addresses, customer counts or performance claims.
+
+Important
+- SEO markup helps search engines understand the pages; it does not guarantee indexing, rich results or rankings.
+- Schema contains no invented street address, ratings or review data.
+- The existing contact form opens WhatsApp and does not store enquiries in a database.
+- Privacy policy and terms remain draft templates and should be reviewed for your actual business and practices.
+- Portfolio samples are illustrative demo concepts; keep that disclosure visible.
+- This upgrade does not register the domain, change DNS, or connect Google Search Console automatically.
