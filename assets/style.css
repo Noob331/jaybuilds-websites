@@ -38,3 +38,42 @@
 .calc-option-copy small{font-size:.72rem;line-height:1.4;color:#74869a;font-weight:500}
 .calc-option-price{grid-column:2;justify-self:start;color:#1268f5;font-size:.75rem;font-weight:800;margin-top:3px}
 @media(max-width:560px){.calc-checks{grid-template-columns:1fr}.calc-checks .calc-option{min-height:0;grid-template-columns:18px minmax(0,1fr) auto;align-items:center;padding:14px}.calc-option-price{grid-column:3;grid-row:1;align-self:start;margin-top:1px}.calc-option-copy small{font-size:.73rem}}
+
+
+/* Mobile: reduce homepage scroll length while keeping key information */
+@media(max-width:560px){
+  .section{padding:42px 0}
+  .section-tight{padding:30px 0}
+  .section-head{margin-bottom:20px}
+  .section-head h2{margin-top:8px;margin-bottom:9px}
+  .section-head>p,.section-head p{font-size:.88rem;line-height:1.55}
+  .hero{padding:30px 0 18px}
+  .hero h1{margin-top:17px;margin-bottom:14px}
+  .hero .lead{font-size:.94rem;line-height:1.6}
+  .hero-micro{margin-top:19px}
+  .calculator-form{gap:15px;padding:18px}
+  .calculator-result{gap:10px;padding:21px}
+  .estimate-price{font-size:2.6rem}
+  #demo-gallery .demo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  #demo-gallery .demo-card:nth-child(n+4){display:none}
+  #demo-gallery .demo-art{min-height:135px;padding:25px 8px 10px}
+  #demo-gallery .demo-window{min-height:115px;border-radius:9px}
+  #demo-gallery .demo-window-nav{padding:7px;font-size:.48rem}
+  #demo-gallery .demo-window-nav span{display:none}
+  #demo-gallery .demo-window-body{padding:13px 9px 10px}
+  #demo-gallery .demo-window-body strong{font-size:1.15rem;margin:6px 0 8px}
+  #demo-gallery .demo-window-body small{font-size:.4rem}
+  #demo-gallery .demo-window-orb{width:39px;height:39px;right:5px;bottom:5px;font-size:1.2rem}
+  #demo-gallery .demo-cta{font-size:.39rem;padding:5px 6px}
+  #demo-gallery .demo-info{padding:13px}
+  #demo-gallery .demo-info h3{font-size:.94rem;line-height:1.25}
+  #demo-gallery .demo-info p{font-size:.77rem;line-height:1.45;margin-bottom:10px}
+  #demo-gallery .demo-details{font-size:.75rem;padding:8px 0;margin-bottom:10px}
+  #demo-gallery .demo-bottom{padding:17px;margin-top:16px;gap:12px}
+  .service-card,.project-info{padding:18px}
+  .founder-layout{gap:23px}
+  .founder-photo-wrap{max-width:300px}
+  .founder-skills{gap:7px;margin:17px 0}
+  .founder-actions{margin-top:18px}
+  .quote-band{padding:22px;border-radius:20px}
+}
