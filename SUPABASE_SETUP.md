@@ -1,37 +1,30 @@
 # JAYBUILDS.IN — Database and admin setup
 
-This repository is a static HTML/CSS/JavaScript website deployed on Vercel. The database schema is prepared, but the live database cannot be created until you create a Supabase project and run the SQL yourself.
+The Supabase project `jaybuilds-business` has been created in Mumbai (`ap-south-1`) and the database schema has been applied. The private dashboard frontend is at `/admin/`; its deployment follows the repository's normal Vercel GitHub integration.
 
-## What this setup covers
+## What is included
 - Customer enquiries and quote requests
 - Customers / business contacts
 - Projects and project status
-- Project updates
+- Project updates table (for future progress-note UI)
 - Quotes
 - Payment records (tracking only; no payment gateway is connected)
 - Tasks
 - Allow-listed private administrators
+- Row Level Security on all business tables
 
-## Step 1 — Create the database
-1. Open https://supabase.com and sign in.
-2. Create a new project named `jaybuilds-business`.
-3. Save the database password somewhere safe.
-4. Wait for the project to finish provisioning.
+## Step 1 — Open the project
+Supabase dashboard: https://supabase.com/dashboard/project/zggntkfvvswtlplmkwyy
 
-## Step 2 — Create the tables securely
-1. In this GitHub repository, open `supabase/schema.sql`.
-2. Copy the complete SQL file.
-3. In Supabase, open **SQL Editor** → **New query**.
-4. Paste the SQL and click **Run**.
-5. Confirm the tables appear in **Table Editor**.
+Project URL: `https://zggntkfvvswtlplmkwyy.supabase.co`
 
-The schema enables Row Level Security and allows the public to insert new enquiries only. Customers, project records, quotes, payments and tasks are restricted to an administrator explicitly added to `admin_users`.
+The dashboard frontend uses the Supabase publishable key, which is designed for browser use with RLS enabled. Never put a secret key or `service_role` key in HTML, JavaScript, GitHub, or Vercel client-side configuration.
 
-## Step 3 — Create your private admin user
+## Step 2 — Create your private admin account
 1. In Supabase, open **Authentication → Users**.
-2. Choose **Add user** and create your own account using an email you control. Use a strong unique password.
-3. Open that user's details and copy the exact user UUID.
-4. In SQL Editor, run the following after replacing both placeholders:
+2. Choose **Add user** and create an account with an email you control and a strong unique password.
+3. Copy the exact user UUID shown for that account.
+4. In SQL Editor, run the following after replacing the UUID placeholder:
 
 ```sql
 insert into public.admin_users (user_id, display_name)
@@ -39,24 +32,34 @@ values ('PASTE-THE-REAL-AUTH-USER-UUID-HERE', 'Jay')
 on conflict (user_id) do update set display_name = excluded.display_name;
 ```
 
-Never share your password or secret keys in chat. Do not add a public sign-up form for admin access.
+Do not share your password or UUID publicly. Do not enable public sign-up for administrator access.
 
-## Step 4 — Important current limitation
-The current public website is static. This change adds the database schema and setup guide to GitHub; it does **not** yet connect the existing enquiry form, calculator or WhatsApp buttons to the database, and it does not create a working authenticated admin dashboard. Those require a Supabase project URL and publishable key, then frontend integration and testing. The website can continue using WhatsApp while this is pending.
+## Step 3 — Open the dashboard
+After Vercel deploys the latest commit, visit https://jaybuilds.in/admin/.
 
-## Step 5 — Secure configuration for the next implementation
-After the project is created, collect only:
-- Supabase Project URL
-- Supabase publishable key (safe for browser use when RLS is configured)
+Sign in with the account created in Step 2. If the account has not been added to `public.admin_users`, the dashboard will reject access.
 
-These are available in Supabase **Project Settings → API** (labels may vary). Add them to the website's frontend configuration. Never put a Supabase secret key or legacy `service_role` key in HTML, JavaScript, GitHub, or Vercel client-side environment variables.
+## Dashboard capabilities currently implemented
+- Overview counts and latest enquiries
+- View enquiries and update their status
+- Add and view customers
+- Add and view projects
+- Create and view quotes
+- Record and view payment status
+- Add and view tasks (requires a valid project UUID)
+
+## Important limitations
+- Existing public website contact form and calculator still prepare WhatsApp messages; they are **not yet wired to save enquiries to the database**.
+- Payment entries are manual records only. No payment gateway or automated reconciliation is connected.
+- Project updates have a database table but no dedicated UI yet.
+- Dashboard deployment must be verified after Vercel finishes building.
 
 ## Database tables
 | Table | Purpose |
 |---|---|
 | `admin_users` | Explicit allow-list of administrators |
 | `customers` | Customer / business contact records |
-| `enquiries` | Public quote and contact submissions |
+| `enquiries` | Enquiries; public inserts only |
 | `projects` | Client work, status, due dates and live links |
 | `project_updates` | Progress notes |
 | `quotes` | Quotes and acceptance status |
