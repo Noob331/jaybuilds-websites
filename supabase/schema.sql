@@ -110,6 +110,24 @@ create table if not exists public.tasks (
   updated_at timestamptz not null default now()
 );
 
+
+create table if not exists public.invoices (
+  id uuid primary key default gen_random_uuid(),
+  invoice_number text not null unique default ('INV-' || upper(substr(replace(gen_random_uuid()::text,'-',''),1,8))),
+  customer_id uuid references public.customers(id) on delete set null,
+  project_id uuid references public.projects(id) on delete set null,
+  description text not null,
+  amount numeric(12,2) not null check (amount >= 0),
+  tax_amount numeric(12,2) not null default 0 check (tax_amount >= 0),
+  total_amount numeric(12,2) generated always as (amount + tax_amount) stored,
+  status text not null default 'draft' check (status in ('draft','sent','paid','overdue','cancelled')),
+  issue_date date not null default current_date,
+  due_date date,
+  notes text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists invoices_status_created_idx on public.invoices(status, created_at desc);
 create index if not exists enquiries_status_created_idx on public.enquiries(status, created_at desc);
 create index if not exists projects_status_created_idx on public.projects(status, created_at desc);
 create index if not exists payments_status_idx on public.payments(status);
@@ -140,11 +158,12 @@ alter table public.project_updates enable row level security;
 alter table public.quotes enable row level security;
 alter table public.payments enable row level security;
 alter table public.tasks enable row level security;
+alter table public.invoices enable row level security;
 
 -- Remove broad default access first.
 revoke all on public.admin_users, public.customers, public.enquiries,
   public.projects, public.project_updates, public.quotes, public.payments,
-  public.tasks from anon, authenticated;
+  public.tasks, public.invoices from anon, authenticated;
 
 -- Public visitors may submit an enquiry only; they cannot read or alter enquiries.
 grant insert on public.enquiries to anon, authenticated;
@@ -152,7 +171,7 @@ grant insert on public.enquiries to anon, authenticated;
 -- Signed-in users only get business-management access if they are allow-listed admins.
 grant select, insert, update, delete on public.admin_users, public.customers,
   public.enquiries, public.projects, public.project_updates, public.quotes,
-  public.payments, public.tasks to authenticated;
+  public.payments, public.tasks, public.invoices to authenticated;
 
 drop policy if exists "Admins can read admin list" on public.admin_users;
 create policy "Admins can read admin list" on public.admin_users
@@ -173,7 +192,7 @@ create policy "Public can submit a new enquiry" on public.enquiries
 do $$
 declare t text;
 begin
-  foreach t in array array['customers','enquiries','projects','project_updates','quotes','payments','tasks']
+  foreach t in array array['customers','enquiries','projects','project_updates','quotes','payments','tasks','invoices']
   loop
     execute format('drop policy if exists %I on public.%I', 'Admins manage ' || t, t);
     execute format(
