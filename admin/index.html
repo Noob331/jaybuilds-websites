@@ -37,7 +37,7 @@
   $('#invoice-customer').innerHTML='<option value="">Select customer (optional)</option>'+customers.map(x=>'<option value="'+safe(x.id)+'">'+safe(x.full_name+(x.company_name?' — '+x.company_name:''))+'</option>').join('');
   $('#invoice-project').innerHTML='<option value="">Select project (optional)</option>'+projects.map(x=>'<option value="'+safe(x.id)+'">'+safe(x.project_name)+'</option>').join('');
   $('#invoices-table').innerHTML=table(invoiceCache,[{label:'Invoice #',key:'invoice_number'},{label:'Customer',render:r=>safe(r.customers?.full_name||'—')},{label:'Description',key:'description'},{label:'Total',render:r=>money(r.total_amount)},{label:'Status',key:'status'},{label:'Due',key:'due_date'},{label:'PDF / Print',render:r=>'<button class="secondary" type="button" data-print-invoice="'+safe(r.id)+'">Print / Save PDF</button>'}]);
-  $('[data-print-invoice]').forEach(b=>b.addEventListener('click',()=>printInvoice(b.dataset.printInvoice)));
+  $$('[data-print-invoice]').forEach(b=>b.addEventListener('click',()=>printInvoice(b.dataset.printInvoice)));
  }
  function printInvoice(id){
   const r=invoiceCache.find(x=>x.id===id);
