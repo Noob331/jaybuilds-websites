@@ -77,3 +77,65 @@
   .founder-actions{margin-top:18px}
   .quote-band{padding:22px;border-radius:20px}
 }
+
+
+/* JAYBUILDS premium red-and-white refresh — 22 Oct 2026 */
+:root{
+ --ink:#171316;--ink2:#302127;--body:#65565b;
+ --blue:#d7193f;--blue2:#a90e2b;--sky:#fff0f2;--pale:#fffafb;
+ --line:#f0d7dc;--white:#fff;--orange:#ff624f;
+ --shadow:0 22px 60px rgba(116,12,38,.12);--radius:26px;
+}
+body{background:#fff;color:var(--ink)}
+body:before{
+ background:
+ radial-gradient(ellipse at 8% 12%,rgba(235,30,65,.09),transparent 28%),
+ radial-gradient(ellipse at 94% 23%,rgba(255,90,99,.09),transparent 25%),
+ linear-gradient(180deg,#fff 0%,#fffafb 54%,#fff 100%);
+}
+.topline{background:#fff0f2;border-bottom-color:#f3d4da;color:#5d343d}
+.topline b,.nav-links a:hover,.nav-links a[aria-current=page]{color:#c81035}
+.site-header{background:rgba(255,255,255,.92);border-bottom-color:rgba(231,194,202,.75)}
+.brand-mark{background:linear-gradient(145deg,#ef254b 0%,#a9002a 65%,#69001c 100%);box-shadow:0 10px 26px rgba(197,12,50,.28)}
+.brand-name em{color:#d7193f}
+.nav-links a[aria-current=page]:after{background:linear-gradient(90deg,#f52e50,#a9002a)}
+.btn-primary{background:linear-gradient(115deg,#f22b4d 0%,#d7193f 48%,#a90e2b 100%);box-shadow:0 12px 26px rgba(190,12,49,.24)}
+.btn-primary:hover{background:linear-gradient(115deg,#d7193f,#8f0925);box-shadow:0 16px 32px rgba(190,12,49,.3)}
+.btn-secondary,.btn-outline{border-color:#e9bfc8;color:#a90e2b;background:#fff}
+.btn-secondary:hover,.btn-outline:hover{background:#fff0f2;border-color:#d7193f}
+.hero{position:relative;isolation:isolate}
+.hero:before{content:"";position:absolute;z-index:-1;inset:5% -8% 0 22%;pointer-events:none;background:radial-gradient(ellipse,rgba(226,22,61,.10),transparent 65%);filter:blur(18px)}
+.hero-copy h1,.hero h1{letter-spacing:-.065em;text-shadow:0 2px 0 #fff,0 4px 0 rgba(150,0,35,.08),0 14px 34px rgba(139,0,36,.12)}
+.hero-copy h1 strong,.hero-copy h1 span,.hero h1 strong,.hero h1 span{color:#d7193f}
+.hero-art,.hero-art-wrap{filter:drop-shadow(0 24px 28px rgba(116,12,38,.12))}
+.hero-art{border:1px solid rgba(255,255,255,.9);box-shadow:0 24px 60px rgba(104,12,37,.16),inset 0 1px 0 rgba(255,255,255,.9)}
+.hero-stats>div,.stat-card,.service-card,.price-card,.work-card,.feature-card{
+ border-color:#f0d7dc;box-shadow:0 16px 42px rgba(116,12,38,.07)
+}
+.service-card:hover,.price-card:hover,.work-card:hover,.feature-card:hover{
+ border-color:#e7aab7;box-shadow:0 24px 56px rgba(116,12,38,.13);transform:translateY(-5px)
+}
+.section-kicker,.eyebrow,.hero-kicker{color:#b20f32}
+.section-kicker:before,.eyebrow:before{background:#d7193f}
+.founder-section{position:relative;isolation:isolate}
+.founder-section:before{content:"";position:absolute;inset:8% 0;background:linear-gradient(110deg,rgba(255,239,242,.65),rgba(255,255,255,0));z-index:-1;pointer-events:none}
+.founder-photo-wrap{filter:drop-shadow(0 22px 35px rgba(113,8,35,.17))}
+.founder-photo{border:5px solid #fff;box-shadow:0 0 0 1px #edc1ca,0 22px 50px rgba(113,8,35,.17)}
+.founder-photo-glow{background:radial-gradient(circle,rgba(227,20,59,.22),transparent 68%)}
+.founder-photo-tag{background:linear-gradient(110deg,#d7193f,#970b29);color:#fff;box-shadow:0 12px 28px rgba(158,8,42,.24)}
+.founder-live-dot{background:#ff5368;box-shadow:0 0 0 5px rgba(255,83,104,.15)}
+.wa-float{background:linear-gradient(145deg,#e91f47,#a90e2b)!important;box-shadow:0 12px 28px rgba(169,14,43,.32)!important}
+footer{background:#1b1014!important;color:#fff}
+footer a:hover,.footer-links a:hover{color:#ff7b91}
+input:focus,select:focus,textarea:focus{border-color:#d7193f!important;box-shadow:0 0 0 4px rgba(215,25,63,.10)}
+::selection{background:#f9cbd4;color:#5e071b}
+@media(prefers-reduced-motion:no-preference){
+ .hero-art,.hero-art-wrap{animation:jayPremiumFloat 7s ease-in-out infinite}
+ .btn-primary{transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+ .btn-primary:hover{filter:saturate(1.12) brightness(1.04)}
+}
+@keyframes jayPremiumFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:720px){
+ .hero:before{inset:10% -15% 0}
+ .hero-copy h1,.hero h1{text-shadow:0 2px 0 #fff,0 8px 24px rgba(139,0,36,.10)}
+}
